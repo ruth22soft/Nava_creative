@@ -56,7 +56,7 @@ const Navbar = () => {
               active === Link.title ? "text-white" : "text-secondary"
             } hover:text-white text-[18px] font-medium cursor-pointer gap-2`}
           >
-            <a href="https://github.com/Eyob1061/">
+            <a href="https://github.com/Eyob1061">
               <FaGithub />
             </a>
           </li>
