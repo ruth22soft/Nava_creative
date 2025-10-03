@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo2_nava.png";
+
 
 // Use react-icons for simple icon components (react-icons is already in package.json)
 import { FaInstagram, FaTiktok } from 'react-icons/fa';
@@ -26,7 +28,7 @@ const Navbar = () => {
           }}
         >
           <img
-            src={"/src/assets/logo2_nava.png"}
+            src={logo}
             alt="logo"
             className="w-auto h-16 object-contain ml-2 sm:ml-4"
             style={{ display: "block" }}
