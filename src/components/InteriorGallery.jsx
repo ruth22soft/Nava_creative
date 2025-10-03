@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-const images = Array.from({ length: 18 }, (_, i) => `../src/assets/Interior/interior_${i + 1}.jpg`);
+const images = Array.from({ length: 18 }, (_, i) => `../assets/Interior/interior_${i + 1}.jpg`);
 
 const InteriorGallery = () => {
   const [open, setOpen] = useState(false);
