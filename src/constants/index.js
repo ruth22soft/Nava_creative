@@ -28,6 +28,8 @@ import {
   premier,
   aftereffect,
 } from "../assets";
+import { GiSofa } from 'react-icons/gi';
+import { FaDraftingCompass, FaPaintBrush } from 'react-icons/fa';
 
 export const navLinks = [
   {
@@ -35,8 +37,8 @@ export const navLinks = [
     title: "About",
   },
   {
-    id: "work",
-    title: "Work",
+    id: "projects",
+    title: "Projects",
   },
   {
     id: "contact",
@@ -44,22 +46,24 @@ export const navLinks = [
   },
 ];
 
+export const projectSections = [
+  { id: "projects-interior", title: "Interior" },
+  { id: "projects-architecture", title: "Architecture" },
+  { id: "projects-branding", title: "Branding" },
+];
+
 const services = [
   {
-    title: "Full Stack Developer",
-    icon: web,
+    title: "Interior Design",
+    icon: GiSofa,
   },
   {
-    title: "AI Model Trainer Developer",
-    icon: mobile,
+    title: "Architectural Design",
+    icon: FaDraftingCompass,
   },
   {
-    title: "Logo Designer",
-    icon: backend,
-  },
-  {
-    title: "Content Creator",
-    icon: creator,
+    title: "Branding Design",
+    icon: FaPaintBrush,
   },
 ];
 
@@ -133,19 +137,6 @@ const experiences = [
       "Actively collaborated with the team using GitHub for version control",
     ],
   },
-  // {
-  //   title: "Full Stack Developer | Intern",
-  //   company_name: "Addis Ababa Science and Technology University",
-  //   icon: tesla,
-  //   iconBg: "#E6DEDD",
-  //   date: "Jan 2022 - Apr 2022",
-  //   points: [
-  //     "Designed and developed Web Apps",
-  //     "Showcased strong skills in backend development using Node.js",
-  //     "Handled front-end development using basic technologies",
-  //     "Implemented the database system using MySQL",
-  //   ],
-  // },
   {
     title: "Graphics Designn",
     company_name: "Upwork",
@@ -157,19 +148,6 @@ const experiences = [
       "Skilled in logo Design and Branding",
     ],
   },
-  // {
-  //   title: "Full-stack Developer",
-  //   company_name: "Tarabot, Dubai, UAE | Remote",
-  //   icon: meta,
-  //   iconBg: "#E6DEDD",
-  //   date: "Jan 2023 - Present",
-  //   points: [
-  //     "Developed a system for an agency organization connecting service providers worldwide",
-  //     "Digitized paperwork and implemented UI/UX using Bootstrap",
-  //     "Created the backend with PHP and MySQL for efficient candidate displaying, client bookings, and WhatsApp integration.",
-  //     "Deloyment of the end product on Cpanel",
-  //   ],
-  // },
 ];
 
 const testimonials = [

@@ -1,3 +1,4 @@
+/* eslint-env node */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx}"],
@@ -5,7 +6,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#050816",
+        // changed primary from a near-black to a warm brown for an architect/interior-designer theme
+        //primary: "#7A5230",
+        primary:"#402e26",
         secondary: "#aaa6c3",
         tertiary: "#151030",
         "black-100": "#100d25",
