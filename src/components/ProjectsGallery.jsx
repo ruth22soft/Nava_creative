@@ -1,7 +1,15 @@
 import { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { interiorImages, architectureImages, brandingImages } from '../constants/images';
 
-const ProjectsGallery = ({ images = [], title }) => {
+const ProjectsGallery = ({ category = 'interior', title }) => {
+  const images =
+    category === 'interior'
+      ? interiorImages
+      : category === 'architecture'
+      ? architectureImages
+      : brandingImages;
+
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
 
