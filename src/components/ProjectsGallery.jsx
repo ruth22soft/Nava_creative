@@ -84,6 +84,7 @@ const ProjectsGallery = ({ category = 'interior', title }) => {
 };
 
 ProjectsGallery.propTypes = {
+  category: PropTypes.string,
   images: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string,
 };
