@@ -26,7 +26,7 @@ const App = () => {
         {/* Architecture */}
         <section id="projects-architecture" className="scroll-mt-24 mt-20">
           <h2 className="text-nava-brown text-3xl md:text-4xl font-bold mb-6 text-center">
-            Architecture Design
+            Architectural Design
           </h2>
           <ProjectsGallery category="architecture" />
         </section>
