@@ -12,30 +12,19 @@ const App = () => {
         </div>
         <About />
 
-        {/* Projects anchor (so the main "Projects" nav works) */}
-        <section id="projects" className="scroll-mt-24"></section>
+        {/* Anchor for Projects */}
+        <section id="projects" className="scroll-mt-24" />
 
-        {/* Interior */}
+        {/* Show all three sections; dropdown scrolls to these IDs */}
         <section id="projects-interior" className="scroll-mt-24 mt-16">
-          <h2 className="text-nava-brown text-3xl md:text-4xl font-bold mb-6 text-center">
-            Interior Design
-          </h2>
           <ProjectsGallery category="interior" />
         </section>
 
-        {/* Architecture */}
-        <section id="projects-architecture" className="scroll-mt-24 mt-20">
-          <h2 className="text-nava-brown text-3xl md:text-4xl font-bold mb-6 text-center">
-            Architectural Design
-          </h2>
+        <section id="projects-architecture" className="scroll-mt-24 mt-16">
           <ProjectsGallery category="architecture" />
         </section>
 
-        {/* Branding */}
-        <section id="projects-branding" className="scroll-mt-24 mt-20">
-          <h2 className="text-nava-brown text-3xl md:text-4xl font-bold mb-6 text-center">
-            Branding
-          </h2>
+        <section id="projects-branding" className="scroll-mt-24 mt-16">
           <ProjectsGallery category="branding" />
         </section>
 

@@ -10,6 +10,14 @@ const ProjectsGallery = ({ category = 'interior', title }) => {
       ? architectureImages
       : brandingImages;
 
+  const heading =
+    title ||
+    (category === 'interior'
+      ? 'Interior Design'
+      : category === 'architecture'
+      ? 'Architectural Design'
+      : 'Branding');
+
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
 
@@ -59,11 +67,27 @@ const ProjectsGallery = ({ category = 'interior', title }) => {
   return (
     <section className="pt-8 pb-12">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-2xl text-white mb-6">{title}</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <h2 className="text-2xl md:text-3xl font-bold text-nava-brown mb-6 text-center">
+          {heading}
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {images.map((src, i) => (
-            <button key={src} onClick={() => openAt(i)} className="block w-full h-48 overflow-hidden rounded-md focus:outline-none">
-              <img src={src} alt={`img-${i}`} className="w-full h-full object-cover transform hover:scale-105 transition" />
+            <button
+              key={`${category}-${i}`}
+              onClick={() => openAt(i)}
+              className="block w-full overflow-hidden rounded-md ring-1 ring-black/5 focus:outline-none"
+            >
+              <div className="aspect-[4/3] w-full">
+                <img
+                  src={src}
+                  alt={`${category}-${i + 1}`}
+                  className="w-full h-full object-cover transform hover:scale-105 transition"
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw"
+                />
+              </div>
             </button>
           ))}
         </div>
@@ -71,12 +95,17 @@ const ProjectsGallery = ({ category = 'interior', title }) => {
 
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
-          <button onClick={close} aria-label="Close" className="absolute top-6 right-6 text-white text-3xl">✕</button>
-          <button onClick={prev} aria-label="Previous" className="absolute left-6 text-white text-3xl">‹</button>
-          <div className="max-w-5xl max-h-[90vh] w-full px-8">
-            <img src={images[index]} alt={`full-${index}`} className="w-full h-full object-contain mx-auto" />
+          <button onClick={close} aria-label="Close" className="absolute top-4 right-4 text-white text-4xl md:text-5xl">✕</button>
+          <button onClick={prev} aria-label="Previous" className="absolute left-4 text-white text-4xl md:text-5xl">‹</button>
+          <div className="w-full max-w-5xl max-h-[85vh] md:max-h-[90vh] px-4 md:px-8">
+            <img
+              src={images[index]}
+              alt={`full-${index + 1}`}
+              className="w-full h-full object-contain mx-auto select-none"
+              draggable="false"
+            />
           </div>
-          <button onClick={next} aria-label="Next" className="absolute right-6 text-white text-3xl">›</button>
+          <button onClick={next} aria-label="Next" className="absolute right-4 text-white text-4xl md:text-5xl">›</button>
         </div>
       )}
     </section>
@@ -84,8 +113,7 @@ const ProjectsGallery = ({ category = 'interior', title }) => {
 };
 
 ProjectsGallery.propTypes = {
-  category: PropTypes.string,
-  images: PropTypes.arrayOf(PropTypes.string),
+  category: PropTypes.oneOf(["interior", "architecture", "branding"]),
   title: PropTypes.string,
 };
 

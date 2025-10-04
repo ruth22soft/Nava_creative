@@ -1,4 +1,3 @@
-import { Tilt } from 'react-tilt';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 
@@ -9,19 +8,22 @@ import { SectionWrapper } from '../hoc';
 
 const ServiceCard = ({ index, title, icon: Icon }) => {
   return (
-    <Tilt className="xs:w-[250px] w-full" options={{ max: 45, scale: 1, speed: 450 }}>
-      <motion.div
-        variants={fadeIn('right', 'spring', 0.5 * index, 0.75)}
-        className="w-full p-[1px] rounded-[20px] shadow-card"
-      >
-        <div className="bg-white/90 rounded-[20px] py-6 px-6 min-h-[260px] flex justify-evenly items-center flex-col">
+    <div
+      className="xs:w-[260px] w-full cursor-default select-none"
+      aria-label={title}
+      role="img"
+    >
+      <div className="w-full p-[1px] rounded-[20px] shadow-card">
+        <div className="bg-white/90 rounded-[20px] py-8 px-6 min-h-[260px] flex justify-evenly items-center flex-col">
           <div className="text-4xl text-nava-brown flex justify-center items-center w-16 h-16 rounded-md">
-            <Icon />
+            <Icon aria-hidden="true" />
           </div>
-          <h3 className="text-nava-brown text-[18px] font-bold text-center">{title}</h3>
+          <h3 className="text-nava-brown text-[18px] font-bold text-center m-0">
+            {title}
+          </h3>
         </div>
-      </motion.div>
-    </Tilt>
+      </div>
+    </div>
   );
 };
 
@@ -49,16 +51,10 @@ const About = () => {
     With a passion for detail and a commitment to excellence, Nava Creative transforms ideas into experiences—where design meets purpose.
       </motion.p>
 
-      <div className='mt-20 mx-auto max-w-5xl'>
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center items-start'>
+      <div className="mt-20 mx-auto max-w-5xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center items-start">
           {services.map((service, index) => (
-            <div
-              id={projectSections[index]?.id || `projects-${index}`}
-              key={service.title}
-              className="scroll-mt-24"
-            >
-              <ServiceCard index={index} {...service} />
-            </div>
+            <ServiceCard key={service.title} index={index} {...service} />
           ))}
         </div>
       </div>

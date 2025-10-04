@@ -1,123 +1,111 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "../assets/logo2_nava.png";
-
-
-// Use react-icons for simple icon components (react-icons is already in package.json)
-import { FaInstagram, FaTiktok } from 'react-icons/fa';
-
-import { styles } from "../styles";
-import { navLinks, projectSections } from "../constants";
-import { menu, close } from "../assets";
+import { projectSections } from "../constants";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
-  const [toggle, setToggle] = useState(false);
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  const goTo = (id, title = "") => {
+    setActive(title || id);
+    setOpen(false);
+    requestAnimationFrame(() => {
+      const el = document.getElementById(id);
+      const nav = document.querySelector("nav");
+      const offset = (nav?.offsetHeight || 96) + 8;
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+        history.replaceState(null, "", `#${id}`);
+      }
+    });
+  };
+
+  // close dropdown on outside click or Escape
+  useEffect(() => {
+    const onClick = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) setOpen(false);
+    };
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("mousedown", onClick);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("mousedown", onClick);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, []);
 
   return (
-    <nav
-      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 bg-primary`}
-    >
-      <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
-        <Link
-          to="/"
-          className="flex items-center gap-2 pl-4 sm:pl-8"
-          onClick={() => {
-            setActive("");
-            window.scrollTo(0, 0);
-          }}
-        >
-          <img
-            src={logo}
-            alt="logo"
-            className="w-auto h-16 object-contain ml-2 sm:ml-4"
-            style={{ display: "block" }}
-          />
-          {/* <p className="text-white text-[15px] font-serif cursor-pointer flex">
-            {" "}
-             &nbsp;<span className="md:block hidden">"Transforming ideas into timeless design"</span>
-          </p> */}
-        </Link>
-        <div className="hidden sm:flex items-center gap-8">
-          <ul className="flex items-center gap-8 list-none m-0 p-0">
-            {navLinks.map((link) => (
-              <li
-                key={link.id}
-                className={`text-[18px] font-medium cursor-pointer ${
-                  active === link.title ? "text-white" : "text-secondary"
-                }`}
-                onClick={() => setActive(link.title)}
-              >
-                {link.id === "projects" ? (
-                  <div className="relative group">
-                    <button className="flex items-center gap-2">
-                      <span>{link.title}</span>
-                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                        <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </button>
+    <nav className="w-full fixed top-0 z-20 bg-primary">
+      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        <button onClick={() => goTo("top", "")} className="flex items-center gap-3">
+          <img src={logo} alt="Nava Creative" className="h-10 w-auto object-contain" />
+          {/* <span className="hidden sm:inline font-semibold text-nava-brown">Nava Creative</span> */}
+        </button>
 
-                    <div className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-white/90 p-3 rounded-md shadow-lg">
-                      {projectSections.map((sec) => (
-                        <a key={sec.id} href={`#${sec.id}`} className="text-nava-brown hover:text-black py-1">
-                          {sec.title}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                ) : (
-                  <a href={`#${link.id}`}>{link.title}</a>
-                )}
-              </li>
-            ))}
-          </ul>
+        <ul className="hidden sm:flex items-center gap-8 list-none m-0 p-0">
+          <li>
+            <button onClick={() => goTo("about", "About")} className={`text-[16px] ${active === "About" ? "text-black" : "text-nava-brown"}`}>
+              About
+            </button>
+          </li>
 
-          <div className="flex items-center gap-4">
-            <a href="https://www.tiktok.com/@nava.creative?_t=ZM-90Fb1WJFK5w&_r=1" aria-label="Instagram" className="text-black hover:opacity-80">
-              <FaTiktok size={20} />
-            </a>
-            {/* <a href="https://www.tiktok.com/@nava.creative?_t=ZM-90Fb1WJFK5w&_r=1" className="text-white hover:opacity-80">
-              <FaTiktok size={20} />
-            </a> */}
-            <a href="https://www.instagram.com/nava.creative?igsh=MXJwaXB4NThqcTFpZg==" aria-label="TikTok" className="text-black hover:opacity-80">
-            <FaInstagram size={20} />
-          </a>
+          <li className="relative" ref={menuRef}>
+            <button
+              onClick={() => setOpen((v) => !v)}
+              className={`text-[16px] flex items-center gap-2 ${active === "Projects" ? "text-black" : "text-nava-brown"}`}
+              aria-haspopup="true"
+              aria-expanded={open}
+            >
+              Projects
+              <svg className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
 
-            {/* <a href="https://www.instagram.com/nava.creative?igsh=MXJwaXB4NThqcTFpZg==" className="text-white hover:opacity-80">
-              <FaInstagram size={20} /> </a>*/}
-            
-          </div>
-        </div>
-       
-        <div className="sm:hidden flex flex-1 justify-end items-center">
-          <img
-            src={toggle ? close : menu}
-            alt="menu"
-            className="w-[28px] h-[28px] object-contain cursor-pointer"
-            onClick={() => setToggle(!toggle)}
-          />
-          <div
-            className={`${
-              !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w[140px] z-10 rounded-xl`}
+            {open && (
+              <div className="absolute left-0 mt-2 flex flex-col bg-white/95 p-3 rounded-md shadow-lg min-w-[200px]">
+                {projectSections.map((sec) => (
+                  <button
+                    key={sec.id}
+                    onClick={() => goTo(sec.id, sec.title)}
+                    className="text-left text-nava-brown hover:text-black py-1 px-2"
+                  >
+                    {sec.title}
+                  </button>
+                ))}
+              </div>
+            )}
+          </li>
+
+          <li>
+            <button onClick={() => goTo("contact", "Contact")} className={`text-[16px] ${active === "Contact" ? "text-black" : "text-nava-brown"}`}>
+              Contact
+            </button>
+          </li>
+        </ul>
+
+        {/* Mobile: reliable select */}
+        <div className="sm:hidden">
+          <select
+            className="px-3 py-2 border rounded-md text-nava-brown bg-white"
+            onChange={(e) => {
+              const id = e.target.value;
+              const label = e.target.options[e.target.selectedIndex].text;
+              goTo(id, label);
+            }}
+            defaultValue=""
           >
-            <ul className="list-none flex justify-end items-start flex-col gap-4">
-              {navLinks.map((Link) => (
-                <li
-                  key={Link.id}
-                  className={`${
-                    active === Link.title ? "text-white" : "text-secondary"
-                  } font-poppins font-medium cursor-pointer text-[16px]`}
-                  onClick={() => {
-                    setToggle(!toggle);
-                    setActive(Link.title);
-                  }}
-                >
-                  <a href={`#${Link.id}`}>{Link.title}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
+            <option value="" disabled>
+              Menu
+            </option>
+            <option value="about">About</option>
+            <option value="projects-interior">Interior</option>
+            <option value="projects-architecture">Architecture</option>
+            <option value="projects-branding">Branding</option>
+            <option value="contact">Contact</option>
+          </select>
         </div>
       </div>
     </nav>
