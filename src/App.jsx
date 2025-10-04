@@ -14,8 +14,8 @@ const App = () => {
         <ProjectsGallery
           title="Interior"
           images={[
-            '../assets/Interior/interior_1.jpg',
-            '../assets/Interior/interior_2.jpg',
+            '../src/assets/Interior/interior_1.jpg',
+            '../src/assets/Interior/interior_2.jpg',
             '../src/assets/Interior/interior_3.jpg',
             '../src/assets/Interior/interior_4.jpg',
             '../src/assets/Interior/interior_5.jpg',

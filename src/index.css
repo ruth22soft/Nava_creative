@@ -204,6 +204,22 @@
   }
 }
 
+@layer base {
+  :root {
+    --nava-text: #402e26;
+  }
+
+  /* global text color */
+  body {
+    color: var(--nava-text);
+  }
+
+  /* ensure headings, links and common inline elements inherit the same color */
+  h1, h2, h3, h4, h5, h6, p, a, li, span, div, button {
+    color: var(--nava-text);
+  }
+}
+
 /* Motto font (used for the short tagline above Overview) */
 .motto-font {
   font-family: 'Playfair Display', serif;

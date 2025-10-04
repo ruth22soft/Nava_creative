@@ -57,9 +57,9 @@ const Navbar = () => {
                       </svg>
                     </button>
 
-                    <div className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-primary p-3 rounded-md shadow-lg">
+                    <div className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-white/90 p-3 rounded-md shadow-lg">
                       {projectSections.map((sec) => (
-                        <a key={sec.id} href={`#${sec.id}`} className="text-secondary hover:text-white py-1">
+                        <a key={sec.id} href={`#${sec.id}`} className="text-nava-brown hover:text-black py-1">
                           {sec.title}
                         </a>
                       ))}
@@ -73,12 +73,19 @@ const Navbar = () => {
           </ul>
 
           <div className="flex items-center gap-4">
-            <a href="https://www.tiktok.com/@nava.creative?_t=ZM-90Fb1WJFK5w&_r=1" className="text-white hover:opacity-80">
+            <a href="https://www.tiktok.com/@nava.creative?_t=ZM-90Fb1WJFK5w&_r=1" aria-label="Instagram" className="text-black hover:opacity-80">
               <FaTiktok size={20} />
             </a>
-            <a href="https://www.instagram.com/nava.creative?igsh=MXJwaXB4NThqcTFpZg==" className="text-white hover:opacity-80">
-              <FaInstagram size={20} />
-            </a>
+            {/* <a href="https://www.tiktok.com/@nava.creative?_t=ZM-90Fb1WJFK5w&_r=1" className="text-white hover:opacity-80">
+              <FaTiktok size={20} />
+            </a> */}
+            <a href="https://www.instagram.com/nava.creative?igsh=MXJwaXB4NThqcTFpZg==" aria-label="TikTok" className="text-black hover:opacity-80">
+            <FaInstagram size={20} />
+          </a>
+
+            {/* <a href="https://www.instagram.com/nava.creative?igsh=MXJwaXB4NThqcTFpZg==" className="text-white hover:opacity-80">
+              <FaInstagram size={20} /> </a>*/}
+            
           </div>
         </div>
        

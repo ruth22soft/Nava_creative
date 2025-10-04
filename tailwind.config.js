@@ -8,12 +8,13 @@ module.exports = {
       colors: {
         // changed primary from a near-black to a warm brown for an architect/interior-designer theme
         //primary: "#7A5230",
-        primary:"#402e26",
+        primary:"#EAE0D7",
         secondary: "#aaa6c3",
         tertiary: "#151030",
         "black-100": "#100d25",
         "black-200": "#090325",
         "white-100": "#f3f3f3",
+        'nava-brown': '#402e26',
       },
       boxShadow: {
         card: "0px 35px 120px -15px #211e35",
